@@ -1,0 +1,35 @@
+/* FinTrack Custom CSS
+   Minimal overrides on top of Bootstrap 5.
+   Add project-specific styles here as modules are built. */
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* Consistent card shadows */
+.card {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* Ensure tables are always responsive */
+.table-responsive {
+  overflow-x: auto;
+}
+
+/* Progress bar text inside */
+.progress {
+  min-height: 20px;
+}
+
+/* Form control focus — slightly darker */
+.form-control:focus,
+.form-select:focus {
+  border-color: #495057;
+  box-shadow: 0 0 0 0.2rem rgba(73, 80, 87, 0.15);
+}

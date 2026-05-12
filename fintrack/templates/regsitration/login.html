@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{# This template extends base.html but the navbar is hidden (user not authenticated yet) #}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+  <div class="col-md-4 col-lg-3">
+
+    <div class="text-center mb-4">
+      <h3 class="fw-bold">
+        <i class="bi bi-graph-up-arrow me-2"></i>FinTrack
+      </h3>
+      <p class="text-muted small">Supplier Operations Platform</p>
+    </div>
+
+    <div class="card">
+      <div class="card-body p-4">
+        <h5 class="card-title mb-4">Sign In</h5>
+
+        {# Display non-field errors (e.g., "Invalid username or password") #}
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+          <i class="bi bi-exclamation-circle me-2"></i>
+          Invalid username or password. Please try again.
+        </div>
+        {% endif %}
+
+        <form method="post" action="{% url 'login' %}">
+          {# {% csrf_token %} generates and embeds the CSRF protection token #}
+          {# NFR-SEC-02: Django's CSRF protection enabled for all forms #}
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label for="id_username" class="form-label">Username</label>
+            <input type="text"
+                   id="id_username"
+                   name="username"
+                   class="form-control"
+                   placeholder="Enter your username"
+                   autofocus
+                   required>
+          </div>
+
+          <div class="mb-3">
+            <label for="id_password" class="form-label">Password</label>
+            <input type="password"
+                   id="id_password"
+                   name="password"
+                   class="form-control"
+                   placeholder="Enter your password"
+                   required>
+          </div>
+
+          <!-- next is set by Django when a user is redirected to login -->
+          <!-- e.g., user tries /suppliers/ → redirected to /login/?next=/suppliers/ -->
+          <!-- After successful login, Django redirects to 'next' if present -->
+          <input type="hidden" name="next" value="{{ next }}">
+
+          <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-dark btn-lg">
+              <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+    <p class="text-center text-muted small mt-3">
+      FinTrack v1.0 &nbsp;·&nbsp; Internal Use Only
+    </p>
+
+  </div>
+</div>
+{% endblock %}
