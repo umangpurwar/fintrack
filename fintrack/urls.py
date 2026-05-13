@@ -23,26 +23,17 @@ urlpatterns = [
     # ── Admin Panel ──────────────────────────────────────────────
     path('admin/', admin.site.urls),
     # Django's built-in admin panel.
-    # After running createsuperuser, log in at http://127.0.0.1:8000/admin/
-    # The admin panel gives you CRUD on all models out of the box.
-    # Superusers can manage users, groups, and (later) all business data.
 
     # ── Authentication ────────────────────────────────────────────
     path('accounts/', include('django.contrib.auth.urls')),
     # This single line wires up ALL of Django's built-in auth views:
-    #   /accounts/login/           → LoginView
-    #   /accounts/logout/          → LogoutView
-    #   /accounts/password_change/ → PasswordChangeView
-    #   /accounts/password_reset/  → PasswordResetView
-    # Django looks for templates in templates/registration/ for these views.
-    # We only need to create the template files — the view logic is provided by Django.
+
+    # Core app — security infrastructure (access denied, etc.)
+    path('core/', include('core.urls', namespace='core')),
 
     # ── Root Redirect ─────────────────────────────────────────────
     path('', RedirectView.as_view(url='/accounts/login/', permanent=False)),
     # Visiting the root URL (/) redirects to the login page.
-    # permanent=False means HTTP 302 (temporary redirect) — not HTTP 301 (permanent).
-    # Use 302 during development so browsers don't cache the redirect.
-    # In Module 6, this will be replaced with the dashboard view for logged-in users.
 
     # ── Future Module URLs (add as modules are built) ─────────────
     # path('suppliers/', include('suppliers.urls')),
@@ -51,3 +42,6 @@ urlpatterns = [
     # path('credit/', include('credit.urls')),
     # path('pnl/', include('pnl.urls')),
 ]
+
+# Custom error handlers
+handler403 = 'core.views.access_denied'

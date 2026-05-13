@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Access Denied — FinTrack{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+  <div class="col-md-6 text-center">
+
+    <h1 class="display-6 fw-bold mb-3">Access Denied</h1>
+
+    <p class="text-muted mb-4">
+      You do not have permission to view that page.
+      If you believe this is an error, please contact your administrator.
+    </p>
+
+    <div class="mb-4">
+      <span class="badge bg-secondary">HTTP 403 — Forbidden</span>
+    </div>
+
+    <a href="{% url 'core:access_denied' %}" class="btn btn-outline-secondary me-2">
+      <i class="bi bi-arrow-left"></i> Go Back
+    </a>
+
+    <!-- If a dashboard URL exists, use this. For now it links to login. -->
+    <a href="{% url 'login' %}" class="btn btn-dark">
+      <i class="bi bi-house"></i> Home
+    </a>
+
+  </div>
+</div>
+{% endblock %}

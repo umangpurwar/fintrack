@@ -33,3 +33,30 @@ main {
   border-color: #495057;
   box-shadow: 0 0 0 0.2rem rgba(73, 80, 87, 0.15);
 }
+
+/* =============================================
+   Module 0B Additions — Security & Architecture
+   ============================================= */
+
+/* Access denied page */
+.access-denied-icon {
+  font-size: 4rem;
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+/* Role badge in navbar */
+.navbar .badge {
+  vertical-align: middle;
+}
+
+/* Flash message improvements */
+.alert {
+  border-radius: 0;
+  border-left-width: 4px;
+}
+
+/* Ensure Django admin link is visually distinct */
+.dropdown-item .bi-gear {
+  color: #6c757d;
+}
